@@ -40,11 +40,5 @@ const sendFollowRequest = async (req, res) => {
     }
 };
 
-// git init
-// git add README.md
-// git commit -m "first commit"
-// git branch -M main
-// git remote add origin https://github.com/RAHUl-CHAUDHARY01/VibeHub.git
-// git push -u origin main
 
 export {sendFollowRequest}
