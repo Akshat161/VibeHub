@@ -31,6 +31,11 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        nutShell: {
+            type: String,
+            maxlength:200,
+            required: true
+        },
         access: {
             type: String,  // 1 for public , 0 for private
         },

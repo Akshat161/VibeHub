@@ -25,7 +25,7 @@ const generateAccessAndRefereshTokens = async (userId) => {
 
 const registerUser = asyncHandler(async (req, res) => {
 
-    const { username, email, password, fullName,access } = req.body
+    const { username, email, password, fullName,access,nutShell } = req.body
     // console.log(req.body)
     if (fullName === "") {
         throw new ApiError(400, "fullName is required")
@@ -75,6 +75,7 @@ const registerUser = asyncHandler(async (req, res) => {
         email,
         password,
         access,
+        nutShell,
         username: username.toLowerCase()
     })
 
@@ -333,39 +334,39 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
         )
 })
 
-const updateUserCoverImage = asyncHandler(async (req, res) => {
-    const coverImageLocalPath = req.file?.path
+// const updateUserCoverImage = asyncHandler(async (req, res) => {
+//     const coverImageLocalPath = req.file?.path
 
-    if (!coverImageLocalPath) {
-        throw new ApiError(400, "Cover image file is missing")
-    }
+//     if (!coverImageLocalPath) {
+//         throw new ApiError(400, "Cover image file is missing")
+//     }
 
-    //TODO: delete old image - assignment
+//     //TODO: delete old image - assignment
 
 
-    const coverImage = await uploadOnCloudinary(coverImageLocalPath)
+//     const coverImage = await uploadOnCloudinary(coverImageLocalPath)
 
-    if (!coverImage.url) {
-        throw new ApiError(400, "Error while uploading on avatar")
+//     if (!coverImage.url) {
+//         throw new ApiError(400, "Error while uploading on avatar")
 
-    }
+//     }
 
-    const user = await User.findByIdAndUpdate(
-        req.user?._id,
-        {
-            $set: {
-                coverImage: coverImage.url
-            }
-        },
-        { new: true }
-    ).select("-password")
+//     const user = await User.findByIdAndUpdate(
+//         req.user?._id,
+//         {
+//             $set: {
+//                 coverImage: coverImage.url
+//             }
+//         },
+//         { new: true }
+//     ).select("-password")
 
-    return res
-        .status(200)
-        .json(
-            new ApiResponse(200, user, "Cover image updated successfully")
-        )
-})
+//     return res
+//         .status(200)
+//         .json(
+//             new ApiResponse(200, user, "Cover image updated successfully")
+//         )
+// })
 
 
 export {
@@ -377,7 +378,7 @@ export {
     getCurrentUser,
     updateAccountDetails,
     updateUserAvatar,
-    updateUserCoverImage,
+    // updateUserCoverImage,
     deleteAccount,
 }
 

@@ -5,7 +5,7 @@ import { User } from "../models/user.model.js"
         const { requestUserId } = req.body; // The ID of the user who sent the follow request
         const loggedInUserId = req.user.id; // The authenticated user who is accepting/rejecting the request
         const { action } = req.body; // 'accept' or 'reject'
-console.log(requestUserId)
+
         // Find both users
     
         const requestUser = await User.findById(requestUserId);

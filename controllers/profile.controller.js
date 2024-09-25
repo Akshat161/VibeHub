@@ -4,18 +4,20 @@ import { User } from "../models/user.model.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 
 const otherUserProfile = asyncHandler(async (req, res) => {
-    const otherUserId = req.params.id
-    console.log(otherUserId)
+    const otherUserUsername = req.params.username
+    const oUser= await User.find({ username: otherUserUsername })
+    
+    const otherUserId = oUser._id;
     if (otherUserId == req.user._id) {
         throw new ApiError(400, "You are trying to view your profile ")
     }
-    const oUser = await User.findById(otherUserId)
+  
 
 
-    if (oUser.access ==="0") {
+    if (oUser.access === "0") {
         if (!oUser.followers.includes(req.user._id)) {
             return res.status(201).json(
-                new ApiResponse(200,{username:oUser.username,fullname:oUser.fullName,Avtar:oUser.avtar}, "User profile is private !!!")
+                new ApiResponse(200, { username: oUser.username, fullname: oUser.fullName, Avtar: oUser.avtar }, "User profile is private !!!")
             )
         }
     }
