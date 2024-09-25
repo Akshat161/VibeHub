@@ -20,13 +20,14 @@ import userRouter from './routes/user.routes.js'
 import postRouter from './routes/post.routes.js'
 import requestRouter from './routes/request.routes.js'
 import profileRouter from './routes/profile.routes.js'
+import feedRouter from './routes/feed.routes.js'
 
 //routes declaration
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/posts", postRouter)
 app.use("/api/v1/request", requestRouter)
 app.use("/api/v1/profile", profileRouter)
-
+app.use("/api/v1/feed", feedRouter)
 
 
 export { app }

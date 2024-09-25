@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { upload } from "../middleware/multer.middleware.js";
-import {createPost, getAllPosts, getPostById, deletePost, addComment, deleteComment, getPostsByUser, likeOrDislike} from "../controllers/post.controller.js";
+import {createPost,  deletePost, addComment, deleteComment, getPostsByUser, likeOrDislike} from "../controllers/post.controller.js";
 import { verifyJWT } from "../middleware/auth.middleware.js";
 
 
@@ -29,12 +29,7 @@ router.post('/:id/likeordislike', verifyJWT, likeOrDislike);
 router.route('/:id/comments').post(verifyJWT,addComment);
 
 
-// Get all posts
-router.route('/getpost').get(getAllPosts);
 
-// Get a specific post by ID
-
-router.route('/:id').get(getPostById);
 
 
 // Delete a post 
