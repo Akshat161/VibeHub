@@ -36,7 +36,7 @@ console.log(requestUserId)
 
             await loggedInUser.save();
 
-            return res.status(200).json({ message: `You are now following ${requestUser.username}.` });
+            return res.status(200).json({ message: `You are now followed by ${requestUser.username}.` });
         } else if (action === 'reject') {
             // Remove the follow request from the pending list
             loggedInUser.pendingFollowRequests = loggedInUser.pendingFollowRequests.filter(

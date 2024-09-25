@@ -25,7 +25,7 @@ const generateAccessAndRefereshTokens = async (userId) => {
 
 const registerUser = asyncHandler(async (req, res) => {
 
-    const { username, email, password, fullName } = req.body
+    const { username, email, password, fullName,access } = req.body
     // console.log(req.body)
     if (fullName === "") {
         throw new ApiError(400, "fullName is required")
@@ -74,6 +74,7 @@ const registerUser = asyncHandler(async (req, res) => {
         coverImage: coverImage?.url || "",
         email,
         password,
+        access,
         username: username.toLowerCase()
     })
 

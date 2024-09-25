@@ -16,6 +16,8 @@ const sendFollowRequest = async (req, res) => {
         if (!targetUser) {
             return res.status(404).json({ message: "User not found." });
         }
+      
+if(targetUser.access==="0"){
 
         // Check if follow request has already been sent
         if (targetUser.pendingFollowRequests.includes(loggedInUserId)) {
@@ -34,6 +36,23 @@ const sendFollowRequest = async (req, res) => {
         return res.status(200).json({
             message: `Follow request sent to ${targetUser.username}.`
         });
+    }
+    else{
+
+        if (loggedInUser.following.includes(targetUserId)) {
+            return res.status(400).json({ message: "You are already following this user." });
+        }
+        
+        targetUser.followers.push(loggedInUser);
+        loggedInUser.following.push(targetUser);
+
+        // Save both users
+        await loggedInUser.save();
+        await targetUser.save();
+        return res.status(200).json({
+            message: `Followed to ${targetUser.username}.`
+        });
+    }
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "An error occurred while sending the follow request." });

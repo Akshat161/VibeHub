@@ -31,8 +31,8 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        coverImage: {
-            type: String,
+        access: {
+            type: String,  // 1 for public , 0 for private
         },
 
         password: {
