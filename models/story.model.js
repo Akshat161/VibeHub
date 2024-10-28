@@ -29,7 +29,8 @@ const storySchema = new mongoose.Schema({
   }],
   createdAt: { 
     type: Date,
-     default: Date.now, expires: '24h' 
+     default: Date.now,
+      expires: '24h' 
     },  // TTL index for automatic deletion after 24 hours
 
   viewers: [{ 
